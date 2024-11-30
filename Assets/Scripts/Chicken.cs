@@ -7,10 +7,8 @@ public class Chicken : MonoBehaviour
 {
     public Rigidbody rb;
     private ChickenSpawner spawner;
-    public float speed;
 
-    private ChickenCountText _countText;
-
+    [SerializeField] private ChickenSO chickenData;
 
     private void Awake()
     {
@@ -27,12 +25,47 @@ public class Chicken : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveToDestination();
+        if (chickenData.IsEvil)
+        {
+            MoveToChicken();
+        }
+        else
+        {
+            MoveToDestination();
+        }
+        
     }
 
     void MoveToDestination()
     {
-        float velocity = speed * Time.deltaTime;
+        float velocity = chickenData.ChickenSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, spawner._targetLocation.position, velocity);
+    }
+
+    void MoveToChicken()
+    {
+        Chicken[] chickens = FindObjectsOfType<Chicken>();
+
+        Chicken nearestChicken = null;
+        float nearestDist = Mathf.Infinity;
+
+        foreach (Chicken chicken in chickens)
+        {
+            if(chicken == this) continue;
+
+            float dist = Vector3.Distance(transform.position, chicken.transform.position);
+            if (dist < nearestDist)
+            {
+                nearestDist = dist;
+                nearestChicken = chicken;
+            }
+        }
+
+        if (nearestChicken != null && !nearestChicken.chickenData.IsEvil)
+        {
+            float velocity = chickenData.ChickenSpeed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, nearestChicken.transform.position, velocity);
+        }
+
     }
 }

@@ -135,8 +135,9 @@ GameObject:
   - component: {fileID: 138205527}
   - component: {fileID: 138205530}
   - component: {fileID: 138205531}
+  - component: {fileID: 138205532}
   m_Layer: 0
-  m_Name: ChickenManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68278a47fb62a894ca5a8ae1d6fbe7b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 3269954235571853351}
+  goodChickenPrefab: {fileID: 3269954235571853351}
+  evilChickenPrefab: {fileID: 1742960604}
+  evilChickenChance: 0.3
   _spawnLocation: {fileID: 1705111580}
   _targetLocation: {fileID: 1310749027}
 --- !u!114 &138205528
@@ -210,6 +213,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenText: {fileID: 227281869}
+--- !u!114 &138205532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138205526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38828f0133d29a44a84e029d7535a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profitRate: 1
+  currentProfit: 0
+  profitText: {fileID: 658595220}
 --- !u!1 &227281869
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +292,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 2
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -384,6 +402,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 227281870}
+  - {fileID: 658595219}
   - {fileID: 1305334658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -392,6 +411,85 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &658595218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658595219}
+  - component: {fileID: 658595221}
+  - component: {fileID: 658595220}
+  m_Layer: 5
+  m_Name: ProfitCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &658595219
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658595218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 633990756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &658595220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658595218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &658595221
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658595218}
+  m_CullTransparentMesh: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b266cdd20815a4c9aca23422bdee90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chickenCount: 0
 --- !u!1 &1305334657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1284,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1742960604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6340740688334835464, guid: af276ac96a1f7c24295aef75fec38d1c, type: 3}
+  m_PrefabInstance: {fileID: 4055240584876220415}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1750344074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1604,10 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6748080263102266953, guid: 337f080374dd0aa438f99108cd83f597, type: 3}
+      propertyPath: chickenData
+      value: 
+      objectReference: {fileID: 11400000, guid: b305a5a6fd9e5674aa66bdec9dfba673, type: 2}
     - target: {fileID: 7427650560643821176, guid: 337f080374dd0aa438f99108cd83f597, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

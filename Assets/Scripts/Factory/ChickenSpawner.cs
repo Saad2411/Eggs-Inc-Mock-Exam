@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ChickenSpawner : MonoBehaviour
 {
-    public GameObject chickenPrefab;
+    public GameObject goodChickenPrefab;
+    public GameObject evilChickenPrefab;
+    public float evilChickenChance;
 
     public Transform _spawnLocation;
     public Transform _targetLocation;
@@ -12,7 +14,7 @@ public class ChickenSpawner : MonoBehaviour
 
     public void SpawnChicken()
     {
-        IFactory factory = new ChickenFactory(chickenPrefab);
+        IFactory factory = new ChickenFactory(goodChickenPrefab, evilChickenPrefab, evilChickenChance);
 
         GameObject product = factory.CreateProduct();
 

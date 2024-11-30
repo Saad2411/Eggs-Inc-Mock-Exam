@@ -16,7 +16,7 @@ public class Hen : Subject
     {
         if (other.TryGetComponent<Chicken>(out Chicken chicken))
         {
-            ChickenManager.Instance.UpdateChickenCount();
+            chickenCount = ChickenManager.Instance.UpdateChickenCount();
             Destroy(chicken.gameObject);
         }
     }

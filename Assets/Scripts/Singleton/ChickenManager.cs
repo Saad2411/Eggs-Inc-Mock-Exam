@@ -6,8 +6,8 @@ public class ChickenManager : Singleton<ChickenManager>
 {
     public int currentChickenCount;
 
-    public void UpdateChickenCount()
+    public int UpdateChickenCount()
     {
-        currentChickenCount++;
+        return currentChickenCount++;
     }
 }

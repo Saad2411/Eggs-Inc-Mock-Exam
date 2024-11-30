@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 5
+  chickenData: {fileID: 11400000, guid: 625892a4003dc4c4f99c7dc179d697b2, type: 2}
 --- !u!65 &558149847157928498
 BoxCollider:
   m_ObjectHideFlags: 0

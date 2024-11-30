@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class ChickenFactory : IFactory
 {
-    private GameObject _chickenPrefab;
+    private GameObject _goodChickenPrefab;
+    private GameObject _evilChickenPrefab;
+    private float _chance;
 
-
-    public ChickenFactory(GameObject chickenPrefab)
+    public ChickenFactory(GameObject goodChickenPrefab, GameObject evilChickenPrefab, float chance)
     {
-        _chickenPrefab = chickenPrefab;
+        _goodChickenPrefab = goodChickenPrefab;
+        _evilChickenPrefab= evilChickenPrefab;
+        _chance = chance;
     }
 
     public GameObject CreateProduct()
     {
-        return GameObject.Instantiate(_chickenPrefab);
+        float luck = Random.Range(0f, 1f);
+
+        if (luck <= _chance)
+        {
+            return GameObject.Instantiate(_evilChickenPrefab);
+        }
+        else
+        {
+            return GameObject.Instantiate(_goodChickenPrefab);
+        }
+
     }
 
 }
